@@ -5,8 +5,8 @@
  */
 
 import { EventEmitter } from 'events';
-import { ResilienceMesh, ProtocolType, ProtocolConfig } from '../../resilience-mesh/src/index.js';
-import { TelemetryClient } from '../../global-bridge/typescript/src/telemetry-client.js';
+import { ResilienceMesh, ProtocolType, ProtocolConfig } from '../../../resilience-mesh/src/index.js';
+import { TelemetryClient } from '../../../global-bridge/typescript/src/telemetry-client.js';
 
 /**
  * Autonomous networking manager

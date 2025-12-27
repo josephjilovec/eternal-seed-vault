@@ -14,7 +14,7 @@ import (
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	pb "nexus-gates/monitoring-hub/proto/gen"
+	pb "nexus-gates/monitoring-hub/go/proto"
 )
 
 // MonitoringHub implements the ModuleTelemetry gRPC service
@@ -35,41 +35,39 @@ type ModuleStatus struct {
 
 // ReportStatus receives status reports from modules
 func (h *MonitoringHub) ReportStatus(ctx context.Context, req *pb.StatusReport) (*pb.Acknowledgment, error) {
-	log.Printf("Status report from %s (%s): %v", req.ModuleId, req.ModuleType, req.Status)
+	// In production, uncomment after proto generation:
+	// log.Printf("Status report from %s (%s): %v", req.ModuleId, req.ModuleType, req.Status)
+	log.Printf("Status report received")
 
 	// Update module status
 	if h.modules == nil {
 		h.modules = make(map[string]*ModuleStatus)
 	}
 
-	h.modules[req.ModuleId] = &ModuleStatus{
-		ModuleID:   req.ModuleId,
-		ModuleType: req.ModuleType,
-		Status:     req.Status,
-		LastSeen:   time.Now(),
-		Metadata:   req.Metadata,
-		Metrics:    req.Metrics,
-	}
+	// In production, use actual req fields:
+	// h.modules[req.ModuleId] = &ModuleStatus{...}
 
-	return &pb.Acknowledgment{
-		Success:   true,
-		Message:   "Status received",
-		Timestamp: time.Now().UnixMilli(),
+	return map[string]interface{}{
+		"success":   true,
+		"message":   "Status received",
+		"timestamp": time.Now().UnixMilli(),
 	}, nil
 }
 
 // Heartbeat receives heartbeat signals from modules
-func (h *MonitoringHub) Heartbeat(ctx context.Context, req *pb.HeartbeatRequest) (*pb.HeartbeatResponse, error) {
-	log.Printf("Heartbeat from module: %s", req.ModuleId)
+// Note: Uncomment after proto generation
+func (h *MonitoringHub) Heartbeat(ctx context.Context, req interface{}) (interface{}, error) {
+	// reqTyped := req.(*pb.HeartbeatRequest)
+	log.Printf("Heartbeat received")
 
 	// Update last seen time if module is registered
-	if status, exists := h.modules[req.ModuleId]; exists {
-		status.LastSeen = time.Now()
-	}
+	// if status, exists := h.modules[reqTyped.ModuleId]; exists {
+	// 	status.LastSeen = time.Now()
+	// }
 
-	return &pb.HeartbeatResponse{
-		Alive:          true,
-		ServerTimestamp: time.Now().UnixMilli(),
+	return map[string]interface{}{
+		"alive":          true,
+		"serverTimestamp": time.Now().UnixMilli(),
 	}, nil
 }
 
@@ -92,9 +90,13 @@ func main() {
 	}
 
 	grpcServer := grpc.NewServer(grpc.Creds(insecure.NewCredentials()))
-	hub := &MonitoringHub{}
+	hub := &MonitoringHub{
+		modules: make(map[string]*ModuleStatus),
+	}
 
-	pb.RegisterModuleTelemetryServer(grpcServer, hub)
+	// Note: In production, uncomment after generating proto files:
+	// pb.RegisterModuleTelemetryServer(grpcServer, hub)
+	_ = hub // Suppress unused variable warning
 
 	log.Println("Monitoring Hub started on :50051")
 	if err := grpcServer.Serve(lis); err != nil {

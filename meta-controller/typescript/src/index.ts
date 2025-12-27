@@ -138,3 +138,12 @@ export {
 
 export { AutonomousNetworking } from './autonomous-networking.js';
 
+export {
+  ResilienceMesh,
+  ProtocolType,
+  ProtocolConfig,
+  ConnectionStatus,
+  HeartbeatConfig,
+  PortHopConfig
+} from '../../../resilience-mesh/src/index.js';
+
