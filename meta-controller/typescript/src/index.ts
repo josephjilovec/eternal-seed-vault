@@ -6,7 +6,7 @@
 
 import { SelfTranspiler, SourceLanguage, PerformanceMetrics } from './self-transpiler.js';
 import { AutonomousNetworking } from './autonomous-networking.js';
-import { ProtocolType, ProtocolConfig } from '../../resilience-mesh/src/index.js';
+import { ProtocolType, ProtocolConfig } from '../../../resilience-mesh/src/index.js';
 import { EventEmitter } from 'events';
 
 /**

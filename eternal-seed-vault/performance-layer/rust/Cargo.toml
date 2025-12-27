@@ -3,6 +3,10 @@ name = "vault-encryption"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+name = "vault_encryption"
+path = "src/vault_encryption.rs"
+
 [dependencies]
 aes-gcm = "0.10"
 zstd = "0.13"
