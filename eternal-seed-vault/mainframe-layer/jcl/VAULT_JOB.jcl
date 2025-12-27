@@ -1,0 +1,19 @@
+//VAULTJOB JOB (ACCT),'ETERNAL SEED VAULT',
+//            CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),
+//            NOTIFY=&SYSUID
+//*
+//* Purpose: JCL for Eternal Seed Vault Mainframe Storage
+//* Dependencies: IBM Mainframe z/OS
+//* Module Role: Job Control Language for vault operations
+//*
+//STEP1    EXEC PGM=VAULT-STORAGE
+//STEPLIB  DD DSN=NEXUS.VAULT.LOADLIB,DISP=SHR
+//VAULT    DD DSN=NEXUS.VAULT.DATA,DISP=SHR
+//SYSOUT   DD SYSOUT=*
+//SYSIN    DD *
+VAULT-OPERATION=WRITE
+VAULT-KEY=SEED-001
+VAULT-DATA=QUANTUM-RESISTANT-KEY-MATERIAL
+/*
+//*
+

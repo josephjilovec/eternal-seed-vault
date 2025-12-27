@@ -1,0 +1,34 @@
+{
+  "name": "nexus-gates-engineering-system",
+  "version": "1.0.0",
+  "description": "Multi-Agent Software Engineering System - Cross-architecture synchronization from 1960s mainframes to quantum computing",
+  "main": "index.js",
+  "scripts": {
+    "install:all": "npm run install:resilience-mesh && npm run install:global-bridge && npm run install:meta-controller && npm run install:installer-agent",
+    "install:resilience-mesh": "cd resilience-mesh && npm install",
+    "install:global-bridge": "cd global-bridge/typescript && npm install",
+    "install:meta-controller": "cd meta-controller/typescript && npm install",
+    "install:installer-agent": "cd installer-agent/typescript && npm install",
+    "build:all": "npm run build:resilience-mesh && npm run build:global-bridge && npm run build:meta-controller && npm run build:installer-agent",
+    "build:resilience-mesh": "cd resilience-mesh && npm run build",
+    "build:global-bridge": "cd global-bridge/typescript && npm run build",
+    "build:meta-controller": "cd meta-controller/typescript && npm run build",
+    "build:installer-agent": "cd installer-agent/typescript && npm run build"
+  },
+  "keywords": [
+    "polyglot",
+    "quantum-computing",
+    "mainframe",
+    "wasm",
+    "grpc",
+    "self-healing",
+    "multi-architecture"
+  ],
+  "author": "Nexus-Gates Engineering",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/nexus-gates.git"
+  }
+}
+

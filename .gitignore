@@ -1,0 +1,61 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Build outputs
+dist/
+build/
+*.o
+*.so
+*.dylib
+*.dll
+*.exe
+*.wasm
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+failure_log.json
+*.log.*
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment
+.env
+.env.local
+
+# Compiled files
+*.class
+*.jar
+*.war
+
+# Rust
+target/
+Cargo.lock
+
+# Go
+*.exe
+*.test
+
+# TypeScript
+*.js.map
+*.d.ts
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
